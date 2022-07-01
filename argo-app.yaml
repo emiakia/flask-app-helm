@@ -24,7 +24,7 @@ spec:
   source:
     repoURL: 'https://github.com/emiakia/flask-app-helm.git'
     targetRevision: master  # Ensure this is the correct branch
-    path: 'k8s' 
+    path: 'templates' 
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: default
