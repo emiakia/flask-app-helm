@@ -1,27 +1,29 @@
-
 image:
   repository: ghcr.io/emiakia/flask-app-helm
   tag: v01
-service:
-  type: NodePort #LoadBalancer
-  port: 5000
-serviceAccount:
-  create: false
-  name: ""
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-  hosts:
-    - host: flask-app.local 
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
+
+replicaCount: 1
+
 autoscaling:
-  enabled: false
+  enabled: false            # Make sure this line exists
   minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 80
+  maxReplicas: 5
+
+containerPort: 80
+
+service:
+  type: NodePort            # Service type
+  port: 5000                  # Service port
+  targetPort: 5000            # Port on the container
+  nodePort: 30001           # NodePort (optional, can be left blank for automatic assignment)
+
+serviceAccount:
+  create: true              # Set to true if you want to create a new ServiceAccount
+  name: ""                  # Optionally set a specific name for the ServiceAccount
+
+ingress:
+  enabled: false            # Set to true to enable Ingress
+  name: ""                  # Optional: name for the Ingress
+
 imagePullSecrets:
-  - name: ghcr-secret 
+  - name: ghcr-secret       # Reference to the image pull secret
