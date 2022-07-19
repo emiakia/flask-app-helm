@@ -1,6 +1,6 @@
 
 image:
-  repository: ghcr.io/emiakia/flask-app:v01
+  repository: ghcr.io/emiakia/flask-app-helm
   tag: v01
 service:
   type: NodePort #LoadBalancer
@@ -23,3 +23,5 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 80
+imagePullSecrets:
+  - name: ghcr-secret 
