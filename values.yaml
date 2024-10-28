@@ -1,0 +1,8 @@
+
+image:
+  repository: emiakia/flask-app
+  tag: v01
+service:
+  type: NodePort #LoadBalancer
+  port: 5000
+
